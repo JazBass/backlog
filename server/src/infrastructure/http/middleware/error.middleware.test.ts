@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { ValidationError } from '../domain/errors/domain.error'
+import { ValidationError } from '../../../domain/errors/domain.error'
 import { errorMiddleware } from './error.middleware'
 
 function createContext(options: { headersSent?: boolean } = {}) {

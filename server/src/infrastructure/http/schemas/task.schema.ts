@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { NAME_MAX_LENGTH, TASK_PRIORITIES } from '../domain/entities/task.entity'
+import { NAME_MAX_LENGTH, TASK_PRIORITIES } from '../../../domain/entities/task.entity'
 
 export const createTaskSchema = z.object({
   name: z

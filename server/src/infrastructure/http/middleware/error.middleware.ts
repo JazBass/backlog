@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
 
-import { ValidationError } from '../domain/errors/domain.error'
+import { ValidationError } from '../../../domain/errors/domain.error'
 
 /**
  * Central error handler. Must be registered after all routes so Express can

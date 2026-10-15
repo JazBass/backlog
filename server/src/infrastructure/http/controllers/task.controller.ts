@@ -1,14 +1,14 @@
 import type { Request, Response } from 'express'
 
-import { createTaskUseCase, type CreateTaskInput } from '../usecases/create-task.usecase'
-import { getAllTasksUseCase } from '../usecases/get-all-tasks.usecase'
-import { getTaskUseCase } from '../usecases/get-task.usecase'
+import { createTaskUseCase, type CreateTaskInput } from '../../../application/usecases/create-task.usecase'
+import { getAllTasksUseCase } from '../../../application/usecases/get-all-tasks.usecase'
+import { getTaskUseCase } from '../../../application/usecases/get-task.usecase'
 
 export function createTask(req: Request, res: Response): void {
   const input: CreateTaskInput = req.body
   const task = createTaskUseCase.execute(input)
 
-res.status(201).json({ data: task })
+  res.status(201).json({ data: task })
 }
 
 export function getAllTasks(_req: Request, res: Response): void {

@@ -1,19 +1,19 @@
 import type { Request, Response } from 'express'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { Task } from '../domain/entities/task.entity'
-import { createTaskUseCase } from '../usecases/create-task.usecase'
-import { getAllTasksUseCase } from '../usecases/get-all-tasks.usecase'
-import { getTaskUseCase } from '../usecases/get-task.usecase'
+import { Task } from '../../../domain/entities/task.entity'
+import { createTaskUseCase } from '../../../application/usecases/create-task.usecase'
+import { getAllTasksUseCase } from '../../../application/usecases/get-all-tasks.usecase'
+import { getTaskUseCase } from '../../../application/usecases/get-task.usecase'
 import { createTask, getAllTasks, getTaskById } from './task.controller'
 
-vi.mock('../usecases/create-task.usecase', () => ({
+vi.mock('../../../application/usecases/create-task.usecase', () => ({
   createTaskUseCase: { execute: vi.fn() },
 }))
-vi.mock('../usecases/get-all-tasks.usecase', () => ({
+vi.mock('../../../application/usecases/get-all-tasks.usecase', () => ({
   getAllTasksUseCase: { execute: vi.fn() },
 }))
-vi.mock('../usecases/get-task.usecase', () => ({
+vi.mock('../../../application/usecases/get-task.usecase', () => ({
   getTaskUseCase: { execute: vi.fn() },
 }))
 

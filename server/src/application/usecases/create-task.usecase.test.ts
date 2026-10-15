@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { InMemoryTaskRepository } from '../repositories/in-memory-task.repository'
+import { InMemoryTaskRepository } from '../../infrastructure/persistence/repositories/in-memory-task.repository'
 import { CreateTaskUseCase, type CreateTaskInput } from './create-task.usecase'
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/

@@ -1,4 +1,4 @@
-import type { Task } from '../domain/entities/task.entity'
+import type { Task } from '../entities/task.entity'
 
 export interface TaskRepository {
   save(task: Task): Task

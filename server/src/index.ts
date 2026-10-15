@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 
-import { errorMiddleware } from './middleware/error.middleware';
-import { taskRouter } from './routes/task.routes';
+import { errorMiddleware } from './infrastructure/http/middleware/error.middleware';
+import { taskRouter } from './infrastructure/http/routes/task.routes';
 
 const app = express();
 const PORT = 3000;

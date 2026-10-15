@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto'
 
-import { Task, type TaskPriority } from '../domain/entities/task.entity'
-import { inMemoryTaskRepository } from '../repositories/in-memory-task.repository'
-import type { TaskRepository } from '../repositories/task.repository'
+import { Task, type TaskPriority } from '../../domain/entities/task.entity'
+import { inMemoryTaskRepository } from '../../infrastructure/persistence/repositories/in-memory-task.repository'
+import type { TaskRepository } from '../../domain/ports/task.repository'
 
 export interface CreateTaskInput {
   name: string

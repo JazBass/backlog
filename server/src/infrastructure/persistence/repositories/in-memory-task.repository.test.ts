@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { Task, type TaskProps } from '../domain/entities/task.entity'
+import { Task, type TaskProps } from '../../../domain/entities/task.entity'
 import { InMemoryTaskRepository } from './in-memory-task.repository'
 
 const FIRST_ID = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'

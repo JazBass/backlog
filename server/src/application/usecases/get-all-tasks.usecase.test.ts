@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { Task } from '../domain/entities/task.entity'
-import { InMemoryTaskRepository } from '../repositories/in-memory-task.repository'
+import { Task } from '../../domain/entities/task.entity'
+import { InMemoryTaskRepository } from '../../infrastructure/persistence/repositories/in-memory-task.repository'
 import { GetAllTasksUseCase } from './get-all-tasks.usecase'
 
 const FIRST_ID = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
