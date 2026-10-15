@@ -69,4 +69,19 @@ describe('InMemoryTaskRepository', () => {
       expect(repository.findById(SECOND_ID)).toBeUndefined()
     })
   })
+
+  describe('delete', () => {
+    it('removes an existing task and returns true', () => {
+      const task = createTask()
+      repository.save(task)
+
+      expect(repository.delete(task.id)).toBe(true)
+      expect(repository.findById(task.id)).toBeUndefined()
+      expect(repository.findAll()).toEqual([])
+    })
+
+    it('returns false when the task does not exist', () => {
+      expect(repository.delete(FIRST_ID)).toBe(false)
+    })
+  })
 })

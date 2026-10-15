@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { createTaskSchema, getTaskByIdSchema } from './task.schema'
+import { createTaskSchema, taskIdParamsSchema, updateTaskSchema } from './task.schema'
 
 const VALID_UUID = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
 
@@ -86,16 +86,74 @@ describe('createTaskSchema', () => {
   })
 })
 
-describe('getTaskByIdSchema', () => {
+describe('taskIdParamsSchema', () => {
   it('accepts a valid UUID', () => {
-    expect(getTaskByIdSchema.safeParse({ id: VALID_UUID }).success).toBe(true)
+    expect(taskIdParamsSchema.safeParse({ id: VALID_UUID }).success).toBe(true)
   })
 
   it('rejects a malformed UUID', () => {
-    expect(getTaskByIdSchema.safeParse({ id: 'not-a-uuid' }).success).toBe(false)
+    expect(taskIdParamsSchema.safeParse({ id: 'not-a-uuid' }).success).toBe(false)
   })
 
   it('rejects a missing id', () => {
-    expect(getTaskByIdSchema.safeParse({}).success).toBe(false)
+    expect(taskIdParamsSchema.safeParse({}).success).toBe(false)
+  })
+})
+
+describe('updateTaskSchema', () => {
+  it('accepts a body with a single field', () => {
+    expect(updateTaskSchema.safeParse({ name: 'New name' }).success).toBe(true)
+  })
+
+  it('accepts a full valid body and transforms dueDate into a Date', () => {
+    const result = updateTaskSchema.safeParse({
+      name: 'New name',
+      description: 'Updated description',
+      priority: 'high',
+      status: 'in_progress',
+      dueDate: '2026-11-01T10:00:00.000Z',
+    })
+
+    expect(result.success).toBe(true)
+    if (result.success) {
+      expect(result.data.dueDate).toBeInstanceOf(Date)
+    }
+  })
+
+  it('trims the name', () => {
+    const result = updateTaskSchema.safeParse({ name: '  Trimmed name  ' })
+
+    expect(result.success).toBe(true)
+    if (result.success) {
+      expect(result.data.name).toBe('Trimmed name')
+    }
+  })
+
+  it('rejects an empty body', () => {
+    expect(updateTaskSchema.safeParse({}).success).toBe(false)
+  })
+
+  it('rejects a body with only unknown fields', () => {
+    expect(updateTaskSchema.safeParse({ unknownField: 'value' }).success).toBe(false)
+  })
+
+  it('rejects an empty name', () => {
+    expect(updateTaskSchema.safeParse({ name: '' }).success).toBe(false)
+  })
+
+  it('rejects a name longer than 25 characters', () => {
+    expect(updateTaskSchema.safeParse({ name: 'a'.repeat(26) }).success).toBe(false)
+  })
+
+  it('rejects an invalid priority', () => {
+    expect(updateTaskSchema.safeParse({ priority: 'urgent' }).success).toBe(false)
+  })
+
+  it('rejects an invalid status', () => {
+    expect(updateTaskSchema.safeParse({ status: 'archived' }).success).toBe(false)
+  })
+
+  it('rejects an invalid dueDate', () => {
+    expect(updateTaskSchema.safeParse({ dueDate: 'tomorrow' }).success).toBe(false)
   })
 })

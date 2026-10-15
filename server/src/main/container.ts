@@ -1,6 +1,8 @@
 import { CreateTaskUseCase } from '../application/usecases/create-task.usecase'
+import { DeleteTaskUseCase } from '../application/usecases/delete-task.usecase'
 import { GetAllTasksUseCase } from '../application/usecases/get-all-tasks.usecase'
 import { GetTaskUseCase } from '../application/usecases/get-task.usecase'
+import { UpdateTaskUseCase } from '../application/usecases/update-task.usecase'
 import { InMemoryTaskRepository } from '../infrastructure/persistence/repositories/in-memory-task.repository'
 
 // Composition root: the only place that knows about every layer.
@@ -10,3 +12,5 @@ const taskRepository = new InMemoryTaskRepository()
 export const createTaskUseCase = new CreateTaskUseCase(taskRepository)
 export const getAllTasksUseCase = new GetAllTasksUseCase(taskRepository)
 export const getTaskUseCase = new GetTaskUseCase(taskRepository)
+export const updateTaskUseCase = new UpdateTaskUseCase(taskRepository)
+export const deleteTaskUseCase = new DeleteTaskUseCase(taskRepository)

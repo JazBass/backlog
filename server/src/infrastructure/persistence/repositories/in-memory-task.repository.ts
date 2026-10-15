@@ -16,4 +16,8 @@ export class InMemoryTaskRepository implements TaskRepository {
   findById(id: string): Task | undefined {
     return this.tasks.get(id)
   }
+
+  delete(id: string): boolean {
+    return this.tasks.delete(id)
+  }
 }
