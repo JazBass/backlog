@@ -1,8 +1,7 @@
 import type { Request, Response } from 'express'
 
-import { createTaskUseCase, type CreateTaskInput } from '../../../application/usecases/create-task.usecase'
-import { getAllTasksUseCase } from '../../../application/usecases/get-all-tasks.usecase'
-import { getTaskUseCase } from '../../../application/usecases/get-task.usecase'
+import type { CreateTaskInput } from '../../../application/usecases/create-task.usecase'
+import { createTaskUseCase, getAllTasksUseCase, getTaskUseCase } from '../../../main/container'
 
 export function createTask(req: Request, res: Response): void {
   const input: CreateTaskInput = req.body

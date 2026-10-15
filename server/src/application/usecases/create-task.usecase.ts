@@ -1,7 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
 import { Task, type TaskPriority } from '../../domain/entities/task.entity'
-import { inMemoryTaskRepository } from '../../infrastructure/persistence/repositories/in-memory-task.repository'
 import type { TaskRepository } from '../../domain/ports/task.repository'
 
 export interface CreateTaskInput {
@@ -26,6 +25,3 @@ export class CreateTaskUseCase {
     return this.repository.save(task)
   }
 }
-
-// Singleton wired to the in-memory repository (MVP)
-export const createTaskUseCase = new CreateTaskUseCase(inMemoryTaskRepository)

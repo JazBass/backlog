@@ -17,6 +17,3 @@ export class InMemoryTaskRepository implements TaskRepository {
     return this.tasks.get(id)
   }
 }
-
-// Default repository for the app (MVP: in-memory storage)
-export const inMemoryTaskRepository = new InMemoryTaskRepository()
